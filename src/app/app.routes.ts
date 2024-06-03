@@ -7,6 +7,8 @@ export const routes: Routes = [
   /* Cada ruta será un objeto, que tiene dos propiedades, un path y un component */
   {path: "", component: HomeComponent},
   {path: "movies", component: MovieListComponent },
+  {path: "movies/:movieName", component: MovieFormPageComponent },
+  /* -> esta me falta, ruta con parámetros ... { path: "movies/ :movieName", component: MovieDextailComponent}, ruta parametrizada */
   {path: "create", component: MovieFormPageComponent },
 ];
 /* Al meterlo aqui debajo VSC lo mete arriba directamente */
