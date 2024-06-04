@@ -14,7 +14,8 @@ constuctor (
   private route: ActivatedRoute,
   public movieService: MovieService
 ) {
-  const movieName = route.snapshot.params["movieName"]; /* Nombre del parametro */
+  const movieName = route.snapshot.params["movieName"]; /* Nombre del parametro de la ruta */
+
   this.selectedMovie = movieService.getMovie(movieName);
 }
 }
