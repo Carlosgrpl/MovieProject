@@ -1,21 +1,35 @@
 import { Injectable } from '@angular/core';
+import { Movie } from '../models/movie.model'; // Corrección en la importación del modelo Movie
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovieService {
+  heading: string;
+  movies: Movie[];
 
-  /* Esto está mal */
-  constructor() { }
-/* Esto está mal */
+  constructor() {
+    this.heading = 'Movie List';
 
-addMovie(movie: Movie): void {
-  this.movies.push(movie);
+    this.movies = [
+      {
+        name: 'El Señor de los Anillos',
+        duration: 200,
+        director: 'Peter Jackson',
+      },
+      {
+        name: 'La Naranja Mecánica',
+        duration: 120,
+        director: 'Stanley Kubrick',
+      }
+    ];
+  }
 
-  /* Esta parte está mal */
-  getMovie (movieName: string) {
-    find (movie => movie.name === movieName);
-    return this.movies;
-  /* Esta parte está mal */
-  } 
+  getMovie(name: string): Movie | undefined {
+    return this.movies.find(movie => movie.name === name);
+  }
+
+  addMovie(movie: Movie): void {
+    this.movies.push(movie);
+  }
 }

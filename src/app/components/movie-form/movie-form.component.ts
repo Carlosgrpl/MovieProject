@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';  
+import { MovieService } from './movie.service'; 
 
 @Component({
   selector: 'app-movie-form',
-  standalone: true,
-  imports: [ReactiveFormsModule],
   templateUrl: './movie-form.component.html',
-  styleUrl: './movie-form.component.css'
+  styleUrls: ['./movie-form.component.css']
 })
 export class MovieFormComponent {
   movieForm: FormGroup;
@@ -14,13 +13,13 @@ export class MovieFormComponent {
   duration: FormControl;
   director: FormControl;
 
-  constructor() {
+  constructor(private movieService: MovieService) { // Corregido: Quité @Inject y ajusté la visibilidad de movieService
     this.name = new FormControl('', Validators.required);
     this.duration = new FormControl('', [
       Validators.required,
       Validators.max(300),
     ]);
-    this.director = new FormControl('');
+    this.director = new FormControl('', Validators.required);
 
     this.movieForm = new FormGroup({
       name: this.name,
@@ -31,7 +30,7 @@ export class MovieFormComponent {
 
   handleSubmit(): void {
     console.log('Movie Created:', this.movieForm.value);
+    this.movieService.addMovie(this.movieForm.value);
     this.movieForm.reset();
   }
 }
-

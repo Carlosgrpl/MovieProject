@@ -6,7 +6,7 @@ import { HeaderComponent } from '../../components/header/header.component';
   standalone: true,
   imports: [HeaderComponent],
   templateUrl: './movie-form-page.component.html',
-  styleUrl: './movie-form-page.component.css'
+  styleUrls: ['./movie-form-page.component.css'] // Corrección aquí
 })
 export class MovieFormPageComponent {
 

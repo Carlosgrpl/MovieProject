@@ -1,25 +1,21 @@
-<form (submit)="handleSubmit()" [formGroup]="movieForm">
+<form (ngSubmit)="handleSubmit()" [formGroup]="movieForm">
   <fieldset>
     <label for="movie-name">*Movie Name:</label>
     <input type="text" id="movie-name" formControlName="name" />
-    @if (name.invalid && name.touched) {
-    <p class="form-error">Name is required</p>
-    }
+    <p *ngIf="name.invalid && name.touched" class="form-error">Name is required</p>
   </fieldset>
+  
   <fieldset>
     <label for="duration">*Movie Duration:</label>
     <input type="number" id="duration" formControlName="duration" />
-
-    <!-- .hasError(Nombre del Validator) -->
-    @if (duration.hasError("required") && duration.touched) {
-    <p class="form-error">Duration is required</p>
-    } @else if (duration.hasError("max") && duration.touched) {
-    <p class="form-error">Movie cannot be longer than 300 minutes</p>
-    }
+    <p *ngIf="duration.hasError('required') && duration.touched" class="form-error">Duration is required</p>
+    <p *ngIf="duration.hasError('max') && duration.touched" class="form-error">Movie cannot be longer than 300 minutes</p>
   </fieldset>
+  
   <fieldset>
-    <label for="director">Movie Director::</label>
+    <label for="director">Movie Director:</label>
     <input type="text" id="director" formControlName="director" />
   </fieldset>
+  
   <button [disabled]="movieForm.invalid">Create Movie</button>
 </form>

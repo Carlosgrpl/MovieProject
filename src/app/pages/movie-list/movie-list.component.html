@@ -1,3 +1,16 @@
 <app-header></app-header>
 
 <h2>Movie List</h2>
+
+  <ul class="movie-list">
+    <li *ngFor="let movie of asdf.movies; let i = index">
+      <a [routerLink]="[movie.name]" class="link">
+        <div class="movie-container">
+          <h2>{{ i + 1 }}</h2>
+          <h2>{{ movie.name }}</h2>
+          <h3>{{ movie.duration }}</h3>
+          <h3>{{ movie.director }}</h3>
+        </div>
+      </a>
+    </li>
+  </ul>

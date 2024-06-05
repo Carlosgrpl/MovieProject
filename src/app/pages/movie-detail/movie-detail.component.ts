@@ -1,21 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { MovieService } from '../movie.service'; // Corregido la ruta de importación de MovieService
+import { Movie } from '../models/movie.model'; // Importa el modelo Movie si lo tienes definido
+import { HeaderComponent } from '../../components/header/header.component';
 
 @Component({
   selector: 'app-movie-detail',
-  standalone: true,
-  imports: [],
   templateUrl: './movie-detail.component.html',
-  styleUrl: './movie-detail.component.css'
+  styleUrls: ['./movie-detail.component.css'], // Cambiado a styleUrls
 })
-export class MovieDetailComponent {
+export class MovieDetailComponent implements OnInit {
+  selectedMovie: Movie | undefined; // Define el tipo del objeto seleccionado
 
-constuctor (
-  private route: ActivatedRoute,
-  public movieService: MovieService
-) {
-  const movieName = route.snapshot.params["movieName"]; /* Nombre del parametro de la ruta */
+  constructor(
+    private route: ActivatedRoute,
+    public movieService: MovieService
+  ) {}
 
-  this.selectedMovie = movieService.getMovie(movieName);
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      const movieName = params['movieName'];
+      this.selectedMovie = this.movieService.getMovie(movieName);
+    });
+  }
 }
+
+@inject ({ movieService: MovieService })
+class MovieDetailComponent {
+  constructor(public movieService: MovieService) {}
 }
+

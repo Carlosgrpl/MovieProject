@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { MovieFormPageComponent } from './movie-form-page.component';
 
 describe('MovieFormPageComponent', () => {
@@ -8,7 +8,8 @@ describe('MovieFormPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MovieFormPageComponent]
+      declarations: [MovieFormPageComponent],
+      imports: [ReactiveFormsModule]  // Asegúrate de importar ReactiveFormsModule si tu componente lo usa
     })
     .compileComponents();
     
