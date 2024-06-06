@@ -1,0 +1,10 @@
+<app-header></app-header>
+
+@if (selectedUser) {
+  <h2>{{selectedUser.name}}</h2>
+  <h3>{{selectedUser.email}}</h3>
+  <h3>{{selectedUser.address.city}}</h3>
+  <h3>{{selectedUser.address.street}}</h3>
+} else {
+  <h3>No user available with that name</h3>
+}
